@@ -4,7 +4,7 @@
 \contentsline {subsubsection}{Instantaneous Velocity}{2}{section.1.1}%
 \contentsline {subsubsection}{Slope of the Tangent Line}{3}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Definitions of Limits}{4}{section.1.2}%
-\contentsline {subsubsection}{Defining the Limit of a Function (Prelimenary)}{4}{section.1.2}%
+\contentsline {subsubsection}{Defining the Limit of a Function (Preliminary)}{4}{section.1.2}%
 \contentsline {subsubsection}{Finding Limits from a Graph}{4}{section.1.2}%
 \contentsline {subsubsection}{Finding Limits from a Table}{4}{section.1.2}%
 \contentsline {subsubsection}{One-Sided Limits}{4}{tcb@cnt@Example.1.2.1}%
@@ -27,4 +27,11 @@
 \contentsline {subsubsection}{Definition The Derivative Function}{9}{section.2.2}%
 \contentsline {subsubsection}{Derivative Notation}{10}{tcb@cnt@Example.2.2.1}%
 \contentsline {subsubsection}{Continuity}{10}{tcb@cnt@Example.2.2.1}%
+\contentsline {subsubsection}{When Is a Function Not Differentiable at a Point?}{10}{tcb@cnt@Theorem.2.2.1}%
+\contentsline {section}{\numberline {2.3}Rules of Differentiation}{11}{section.2.3}%
+\contentsline {subsubsection}{The Constant and Power Rules for Derivatives}{11}{section.2.3}%
+\contentsline {subsubsection}{Constant Multiple Rule}{11}{tcb@cnt@Theorem.2.3.2}%
+\contentsline {subsubsection}{Sum Rule}{11}{tcb@cnt@Theorem.2.3.3}%
+\contentsline {subsubsection}{The Derivative of the Natural Exponential Function}{12}{tcb@cnt@Theorem.2.3.4}%
+\contentsline {subsubsection}{Higher-Order Derivatives}{12}{tcb@cnt@Theorem.2.3.5}%
 \contentsfinish 

@@ -112,7 +112,7 @@ There are parallels to the idea of limits. As $t\to 1$, the average velocity app
 
 \newpage
 \section{Definitions of Limits}
-\subsubsection{Defining the Limit of a Function (Prelimenary)} 
+\subsubsection{Defining the Limit of a Function (Preliminary)} 
 The function $f$ is defined for all $x$ except possibly at $a$. If $f(x)$ is arbitrarily close to $L$ for all $x$ sufficiently close to $a$, then $f(x)$ is said to be \textbf{tending to $L$ as $x$ approaches $a$}. The limit of $f(x)$ as $x$ approaches $a$ is denoted by 
 \begin{equation*}
     \lim_{x\to a}f(x)=L.
@@ -121,13 +121,13 @@ Often times the $\lim_{x\to a}f(x)=f(a)$, but this is not always the case and ot
 
 \subsubsection{Finding Limits from a Graph}
 
-% Create a graph for demontrating the idea of finding limits from a graph
+% Create a graph for demonstrating the idea of finding limits from a graph
 
 \subsubsection{Finding Limits from a Table}
 We create a table of values of a function corresponding to values of $x$ that are close to $a$.
 \ex{}{
     \begin{center}
-        Make a conjecture about $lim_{x \to 1} \frac{\sqrt{x}-1}{x-1}$ using the tabular method.\\
+        Make a conjecture about $\lim_{x \to 1} \frac{\sqrt{x}-1}{x-1}$ using the tabular method.\\
         \begin{tabularx}{0.8\textwidth} { 
           | >{\raggedright\arraybackslash}X 
           | >{\centering\arraybackslash}X 
@@ -144,12 +144,12 @@ We create a table of values of a function corresponding to values of $x$ that ar
          $f(x)$ & $0.5132$ & $0.5013$ & $0.5001$ & $0.5000$ & $0.5000$ & $0.4999$ & $0.4988$ & $0.4881$  \\
         \hline
         \end{tabularx} \\
-        We can make a mathematical conjecture that the $lim_{x \to 1} \frac{\sqrt{x}-1}{x-1}=0.5$. 
+        We can make a mathematical conjecture that the $\lim_{x \to 1} \frac{\sqrt{x}-1}{x-1}=0.5$. 
     \end{center}
 }
 
 \subsubsection{One-Sided Limits}
-The $\lim_{x \to a}  f(x)=L$ is reffered to as two-sided limit because $f(x)$ approaches $L$ as $x$ approaches $a$ from both sides. However, there are times when we are only interested in the limit as $x$ approaches $a$ from one side. In this case, we use the notation $\lim_{x \to a^+}  f(x)=L$ or $\lim_{x \to a^-}  f(x)=L$ to denote the limit as $x$ approaches $a$ from the positive side or the negative side, respectively.
+The $\lim_{x \to a}  f(x)=L$ is referred to as two-sided limit because $f(x)$ approaches $L$ as $x$ approaches $a$ from both sides. However, there are times when we are only interested in the limit as $x$ approaches $a$ from one side. In this case, we use the notation $\lim_{x \to a^+}  f(x)=L$ or $\lim_{x \to a^-}  f(x)=L$ to denote the limit as $x$ approaches $a$ from the positive side or the negative side, respectively.
 
 \subsubsection{Definition of One-Sided Limits}
 \begin{enumerate}
@@ -320,11 +320,11 @@ The \textbf{derivative of $f$ at $a$} written,
 
 \newpage
 \section{Derivative as a Function}
-In this section we now extend our undestandings of derivatives to all points in the domain $f$ to create new function called the derivative of $f$.
+In this section we now extend our understandings of derivatives to all points in the domain $f$ to create new function called the derivative of $f$.
 
 
 \subsubsection{The Derivative Function}
-Due to the fact that the tangent of any given function moves, the slope of the tangent line will also change. For this reason, the slope on the tangent line for the function $f$ is itself a function, call the \emph{derivaive} of $f$.
+Due to the fact that the tangent of any given function moves, the slope of the tangent line will also change. For this reason, the slope on the tangent line for the function $f$ is itself a function, call the \emph{derivative} of $f$.
 
 
 \begin{center}
@@ -349,7 +349,7 @@ Due to the fact that the tangent of any given function moves, the slope of the t
         % add tangets and dashed lines
         \foreach \c in {1,2,3} {
             %\draw [dashed] let \p1=(c\c) in (c\c) -- (\x1,0) node [below] {$c_\c$};
-            \draw ($(c\c)-(0.75,0)$) -- ($(c\c)+(0.75,0)$) node [midway,above=4mm]{$$}; %{$f'(c_\c)=0$};
+            \draw ($(c\c)-(0.75,0)$) -- ($(c\c)+(0.75,0)$) node [midway,above=4mm]{}; %{$f'(c_\c)=0$};
         }
         % add a and b
         \path [name intersections={of={x and curve}, by={a,b}}] 
@@ -402,6 +402,87 @@ If a function is differentiable at a point, then it is also continuous at that p
 
 \thm{Differentiable Implies Continuous}{If $f$ is differentiable at $a$, then $f$ is continuous $a$.}
 
+\subsubsection{When Is a Function Not Differentiable at a Point?}
+A function $f$ is not differentiable at $a$ if at least one of the following conditions hold:
+
+\begin{enumerate}
+    \item $f$ is not continuous at $a$
+    \item $f$ has a corner at $a$
+    \item $f$ has a vertical tangent at $a$
+\end{enumerate}
+
+
+\newpage
+
+\section{Rules of Differentiation}
+If we had to constantly use limits in order to evaluate derivatives, then calculus would be very tedious. In this section of the notes, we will establish rules and formulas for calculating derivatives quickly.
+
+\subsubsection{The Constant and Power Rules for Derivatives}
+The graph of the \textbf{constant function} $f(x)=c$ is a horizontal line with a slope of zero at every point. Which leads us to the following theorem.
+
+\thm{Constant Rule}{If $c$ is a real number, then $\frac{d}{dx}(c) =0$.}
+
+Now, we consider the functions of the form $f(x)=x^n$, where $n$ is a non negative integer. When evaluating the derivatives of the said, form, using limits we find that the derivative of $x^n$ could be evaluated by placing the exponent $n$ in front of $x$ as a coefficient and decreasing the exponent by $1$. Using these observations, we state the theorem. 
+
+\thm{Power Rule}{If $n$ is a non-negative integer, then $\frac{d}{dx}(x^n)=nx^{n-1}$.}
+
+\subsubsection{Constant Multiple Rule}
+
+We find the derivative of a constant multiple $c$ multiplied by a function $f$. 
+\begin{align*}
+        \frac{d}{dx}(cf(x)) & = \lim_{h \to 0 } \frac{cf(x+h) - cf(x)}{h} \\
+        &= \lim_{h \to 0 } \frac{c(f(x+h) - f(x))}{h} \\
+        &= c\lim_{h \to 0 } \frac{f(x+h) - f(x)}{h} \\
+        & = cf'(x)
+\end{align*}
+
+\thm{Constant Multiple Rule}{If $f$ is differentiable at $x$ and $c$ is a constant, then 
+\begin{equation*}
+    \frac{d}{dx}(cf(x))= cf'(x)
+\end{equation*}}
+
+\subsubsection{Sum Rule}
+Many functions are sums of simpler functions. Therefore, it makes it very convenient if we were to establish  a rule for calculating the derivative of the sum of two or more functions. 
+
+\thm{Sum Rule }{If $f$ and $g$ are differentiable at $x$, then 
+\begin{equation*}
+    \frac{d}{dx} (f(x)+g(x))= f'(x) + g'(x)
+\end{equation*}}
+
+The sum rule can be extended to three or more differentiable functions $f_1$, $f_2$, $\ldots$, $f_n$, to obtain the \textbf{Generalized Sum Rule}:
+
+\begin{equation*}
+    \frac{d}{dx} (f_1(x) + f_2(x) + \ldots + f_n(x)) =  f'_1(x) + f'_2(x) + \ldots + f'_n(x).
+\end{equation*}
+
+\subsubsection{The Derivative of the Natural Exponential Function}
+We come to the fact that
+
+\begin{equation*}
+    \lim_{h \to 0} \frac{e^h - 1}{h}= 1
+\end{equation*}
+(The proof of this is found in Page 157 of the textbook and I will not write it here).
+
+With the preceding facts in mind, the derivative of $f(x) = e^x$ is computed as follows:
+
+\begin{align*}
+    \frac{d}{dx}(e^x) &= \lim_{h \to 0} \frac{e^{x+h} - e^x}{h} \\
+    &= \lim_{h \to 0} \frac{e^x + e^h - e^x}{h} \\
+    &= \lim_{h \to 0} \frac{e^x(e^h- 1)}{h}  \\
+    &= e^x \cdot \lim_{h \to 0} \frac{e^h- 1}{h} \\
+    &= e^x \cdot 1 = e^x.
+\end{align*}
+
+\thm{Derivative of $e^x$}{The functions $f(x)= e^x$ is differentiable for all real number $x$, and 
+\begin{equation*}
+    \frac{d}{dx} (e^x) =e^x
+\end{equation*}
+} 
+
+\subsubsection{Higher-Order Derivatives}
+Because the derivative of a function $f$ is a function in its own right, we can take the derivative $f'$. The result is the \emph{second derivative of $f$}, denoted $f''$. The derivative of the second derivative is the \emph{third derivative of $f$}, denoted by $f'''$. In general, derivatives of order $n \ge 2$ are called \emph{higher-order derivatives}.
+
+Other common notations for the second derivative of $y=f(x)$ include $\frac{d^2y}{dx^2}\frac{d^2f}{dx^2}$; the notations $\frac{d^ny}{dx^n}\frac{d^nf}{dx^n}$, are used for the $n$th derivative of $f$.
 
 
 % \chapter{Module 03: More Derivatives}
