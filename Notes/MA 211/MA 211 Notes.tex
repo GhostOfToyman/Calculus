@@ -1,0 +1,415 @@
+\documentclass{report}
+
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+% set bigger font size
+\setlength{\baselineskip}{1.5ex}
+
+\title{\Huge{MA 211}\\Notes}
+\author{\huge{Patrick Rall}}
+\date{} 
+
+\begin{document} 
+
+\maketitle
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+\chapter{Module 01: Limits}
+\section{The Idea of Limits} 
+\subsubsection{Average Velocity}
+The average velocity over time interval $[t_o,t]$ is the change in position divided by the time elapsed.
+\begin{equation*}
+v_{avg}=\frac{s(t)-s(t_0)}{t-t_0}
+\end{equation*}
+
+The average velocity is simply the slope of the line joining points $(t_0,s(t_0))$ and $(t,s(t))$ on the graph.
+\begin{center}
+    
+    \begin{tikzpicture}[scale=1.75,cap=round]
+        \tikzset{axes/.style={}}
+        %\draw[style=help lines,step=1cm, dotted] (-5.25,-5.25) grid (5.25,5.25);
+        % The graphic
+        \begin{scope}[style=axes]
+            \draw[->] (-.5,0) -- (4.5,0) node[below] {$t$};
+            \draw[->] (0,-.5)-- (0,3) node[left] {$s(t)$};
+            \foreach \x/\xtext in {1.5/t_{o}, 3/t}
+            \draw[xshift=\x cm] (0pt,2pt) -- (0pt,-2pt) 
+            node[below,fill=white,font=\normalsize]
+            {$\xtext$};    
+            \foreach \y/\ytext in {1/y_{1}=s(t_o), 2.125/y_{1}=s(t)}
+            \draw[yshift=\y cm] (2pt,0pt) -- (-2pt,0pt) 
+            node[left,fill=white,font=\normalsize]
+      {$\ytext$};
+      %%%
+      \draw[domain=.5:3.25,smooth,variable=\x,red,<->,thick] plot ({\x},{.5*(\x-1.5)*(\x-1.5)+1});
+      %%%
+      \filldraw[black] (1.5,1) circle (1pt) node[above] {\scriptsize $P$};
+      \filldraw[black] (3,2.125) circle (1pt) node[left] {\scriptsize $Q$};
+      \draw[thick,blue!50,shorten >=-.5cm,shorten <=-.5cm] (1.5,1)--(3,2.125) 
+      node[midway,left] {\scriptsize Secant Line};
+      %%%
+      \draw[blue!50,thick,dashed] (1.5,1)--(3,1)--(3,2.125);
+      \draw[blue!50] (3,1.1)--(2.9,1.1)--(2.9,1);
+      \draw[decoration={brace,mirror,raise=5pt},decorate,blue!50]
+      (1.5,-.250) -- node[below=6pt] {$t_{o}-t_{1}$} (3,-.250);
+      \draw[decoration={brace,mirror, raise=5pt},decorate,blue!50]
+      (3,1) -- node[right=6pt] {$s(t_{o})-s(t)$} (3,2.215);
+      %%%
+      \filldraw[black] (1.5,1) circle (1pt) node[above] {\scriptsize $P$};
+      \filldraw[black] (3,2.125) circle (1pt) node[left] {\scriptsize $Q$};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+\subsubsection{Instantaneous Velocity}
+Instantaneous velocity is determined by computing average velocities over time interval $[t_o,t]$ that decrease in length. As $t$ approaches $t_0$, the $v_{avg}$ approaches the instantaneous velocity $v(t_0)$.
+\begin{equation*}
+    v(t_0)=\lim_{t\to t_0}\frac{s(t)-s(t_0)}{t-t_0}
+\end{equation*}
+\newpage
+
+\subsubsection{Slope of the Tangent Line}
+As we take the limit of $v_{avg}$ as $t$ approaches $t_0$, we get a tangent line. 
+\begin{center}
+    \begin{tikzpicture}[scale=2.5,cap=round,mark pos/.style args={#1/#2}{%
+        postaction={decorate,decoration={markings,%
+        mark=at position #1 with {
+        \coordinate (#2);}}}}]
+        \tikzset{axes/.style={}}
+        %\draw[style=help lines,step=1cm, dotted] (-5.25,-5.25) grid (5.25,5.25);
+        % The graphic
+        \begin{scope}[style=axes]
+          %%%
+          \pgfmathsetmacro{\posP}{0.38}
+         \draw[red,{Latex[bend]}-{Latex[bend]},thick,mark
+         pos/.list={\posP-0.005/p-0,\posP/P,\posP+0.005/p-2,0.5/q-4,0.62/q-3,0.74/q-2,0.86/q-1}] plot[domain=.5:3.25,samples=101,variable=\x] ({\x},{.5*(\x-1.5)*(\x-1.5)+1});
+         \draw[red] let \p1=($(p-2)-(p-0)$),\n1={(\y1/\x1)*(1cm/1pt)}
+         in ($(P)-1*(1,\n1)$) -- ($(P)+2*(1,\n1)$) node[right,anchor=north
+         west,font=\scriptsize,text width=1cm]{slope $m$ $=$ instantaneous velocity};
+         \fill (P) circle (1pt) node[above,font=\scriptsize] {$P$};
+         \foreach \X in {1,...,4}
+         {\fill (q-\X) circle (1pt) node[below right,font=\scriptsize] {$Q_\X$};
+         \path (P) -- (q-\X) coordinate[pos=-0.5] (L-\X) coordinate[pos={1.2+\X*0.3}] (R-\X);
+         \draw[cyan,dashed] (L-\X) -- (R-\X) node[right,font=\scriptsize] (m\X) {slope $m_\X$}; }
+         \draw[line width=2mm,-{Latex[bend]},red!20] ($(m1)+(0.5,0.1)$)
+         to[out=-90,in=65] ++ (-0.2,-1.2);
+          %%%
+         %%%
+        \end{scope}
+        \end{tikzpicture}
+\end{center}
+We can define find the slope of the tangent line by finding the limit of the slope of the secant line as $t$ approaches $t_0$.
+\begin{equation*}
+    m(t_0)=\lim_{t\to t_0}\frac{s(t)-s(t_0)}{t-t_0}.
+\end{equation*}
+
+The limit defines the instantaneous velocity, therefore the instantaneous velocity at point $P$ of the graph is the slope of the tangent line at point $P$ of the position curve.   
+
+There are parallels to the idea of limits. As $t\to 1$, the average velocity approaches the instantaneous velocity, just as the secant line approaches the tangent line.
+
+\newpage
+\section{Definitions of Limits}
+\subsubsection{Defining the Limit of a Function (Prelimenary)} 
+The function $f$ is defined for all $x$ except possibly at $a$. If $f(x)$ is arbitrarily close to $L$ for all $x$ sufficiently close to $a$, then $f(x)$ is said to be \textbf{tending to $L$ as $x$ approaches $a$}. The limit of $f(x)$ as $x$ approaches $a$ is denoted by 
+\begin{equation*}
+    \lim_{x\to a}f(x)=L.
+\end{equation*}
+Often times the $\lim_{x\to a}f(x)=f(a)$, but this is not always the case and other methods for finding limits are available.
+
+\subsubsection{Finding Limits from a Graph}
+
+% Create a graph for demontrating the idea of finding limits from a graph
+
+\subsubsection{Finding Limits from a Table}
+We create a table of values of a function corresponding to values of $x$ that are close to $a$.
+\ex{}{
+    \begin{center}
+        Make a conjecture about $lim_{x \to 1} \frac{\sqrt{x}-1}{x-1}$ using the tabular method.\\
+        \begin{tabularx}{0.8\textwidth} { 
+          | >{\raggedright\arraybackslash}X 
+          | >{\centering\arraybackslash}X 
+          | >{\centering\arraybackslash}X 
+          | >{\centering\arraybackslash}X 
+          | >{\centering\arraybackslash}X 
+          | >{\centering\arraybackslash}X 
+          | >{\centering\arraybackslash}X 
+          | >{\centering\arraybackslash}X 
+          | >{\raggedleft\arraybackslash}X | }
+         \hline
+         $x$ & $0.9$ & $0.99$ & $0.999$ & $0.9999$ & $1.0001$ & $1.001$ & $1.01$ & $1.1$ \\
+         \hline
+         $f(x)$ & $0.5132$ & $0.5013$ & $0.5001$ & $0.5000$ & $0.5000$ & $0.4999$ & $0.4988$ & $0.4881$  \\
+        \hline
+        \end{tabularx} \\
+        We can make a mathematical conjecture that the $lim_{x \to 1} \frac{\sqrt{x}-1}{x-1}=0.5$. 
+    \end{center}
+}
+
+\subsubsection{One-Sided Limits}
+The $\lim_{x \to a}  f(x)=L$ is reffered to as two-sided limit because $f(x)$ approaches $L$ as $x$ approaches $a$ from both sides. However, there are times when we are only interested in the limit as $x$ approaches $a$ from one side. In this case, we use the notation $\lim_{x \to a^+}  f(x)=L$ or $\lim_{x \to a^-}  f(x)=L$ to denote the limit as $x$ approaches $a$ from the positive side or the negative side, respectively.
+
+\subsubsection{Definition of One-Sided Limits}
+\begin{enumerate}
+    \item \underline{Right Sided Limits} Suppose $f$ is defined for all $x$ for all $x$ near $a$ with $x>a$. If $f(x)$ is arbitrarily close to $L$ for all $x$ sufficiently close to $a$ with $x>a$, we write,
+    \begin{equation*}
+        \lim_{x \to a^+}  f(x)=L.
+    \end{equation*}
+    \item \underline{Left Sided Limits} Analogously, suppose $f$ is defined for all $x$ for all $x$ near $a$ with $x<a$. If $f(x)$ is arbitrarily close to $L$ for all $x$ sufficiently close to $a$ with $x<a$, we write, 
+    \begin{equation*}
+        \lim_{x \to a^-}  f(x)=L.
+    \end{equation*}
+\end{enumerate}
+
+\thm{}{The $\lim_{x \to a}  f(x)=L$ if and only if $\lim_{x \to a^-}  f(x)= \lim_{x \to a^+}f(x)= L$.}
+
+\newpage
+\section{Techniques for Computing Limits}
+This section of the notes will cover the techniques for precisely computing the limits of functions without having the need to use mathematical evidence to create a conjecture.
+
+\subsubsection{Limits of Linear Functions}
+If $f(x)=mx+b$, then the $\lim_{x \to a}  f(x)=f(a)$. Linear functions allow for direct substitution of $x$ with $a$ to find the limit.
+
+\thm{}{Let $a$,$b$ and $m$ be real numbers. For linear functions $f(x)=mx+b$, we have 
+    \begin{equation*}
+        \lim_{x \to a}  f(x)=ma+b.
+    \end{equation*}
+}
+
+\subsubsection{Limit Laws}
+\thm{Limit Laws}{
+    \begin{enumerate}
+        \item \underline{Sum Law} $\lim _{x \rightarrow a}(f(x)+g(x))=\lim _{x \rightarrow a} f(x)+\lim _{x \rightarrow a} g(x)$
+        \item \underline{Difference Law} $\lim _{x \rightarrow a}(f(x)-g(x))=\lim _{x \rightarrow a} f(x)-\lim _{x \rightarrow a} g(x)$
+        \item \underline{Constant Multiple Law} $\lim _{x \rightarrow a}(c f(x))=c \lim _{x \rightarrow a} f(x)$
+        \item \underline{Product Law} $\lim _{x \rightarrow a}(f(x) g(x))=\left(\lim _{x \rightarrow a} f(x)\right)\left(\lim _{x \rightarrow a} g(x)\right)$
+        \item \underline{Quotient Law} $\lim _{x \rightarrow a}\left(\frac{f(x)}{g(x)}\right)=\frac{\lim _{x \rightarrow a}(f(x)}{\lim _{x \rightarrow a} g(x)}, \text { provided } \lim _{x \rightarrow a} g(x) \neq 0$
+        \item \underline{Power Law} $\lim _{x \rightarrow a}(f(x))^n=\left(\lim _{x \rightarrow a} f(x)\right)^n$
+        \item \underline{Root Law} $\lim _{x \rightarrow a}(f(x))^{1 / n}=\left(\lim _{x \rightarrow a} f(x)\right)^{1 / n}, \text { provided } f(x)>0 \text {, for } x \text { near } a \text {, if } n \text { is even }$
+    \end{enumerate}
+}
+
+\subsubsection{Limits of Polynomial Functions and Rational Functions}
+The limit laws are used to find the limits of polynomial functions and rational functions. The limit of a polynomial function is found by direct substitution, $\lim_{x \rightarrow a} p(x)=p(a)$. And using the quotient limit law, we can find the limit of rational functions, 
+\begin{equation*}
+    \lim _{x \rightarrow a} \frac{p(x)}{q(x)}=\frac{\lim _{x \rightarrow a} p(x)}{\lim _{x \rightarrow a} q(x)}=\frac{p(a)}{q(a)}, \text { provided } q(a) \neq 0.
+\end{equation*} 
+
+\thm{Limits of Polynomial and Rational Functions}{
+    \begin{enumerate}
+    \item Polynomial functions: $\lim_{x \rightarrow a} p(x)=p(a)$
+    \item Rational functions: $\lim _{x \rightarrow a} \frac{p(x)}{q(x)}=\frac{p(a)}{q(a)}, \text { provided } q(a) \neq 0$
+    \end{enumerate}
+}
+
+\newpage
+
+\subsubsection{One Sided Limits}
+Theorem 1.3.1, 1.3.2, and 1.3.3 can be used to find the one-sided limits of functions. The one-sided limits are found by using the one-sided limit laws.
+
+\thm{One Sided Limits}{
+    Limit Laws 1-6 hold then the $\lim_{x \rightarrow a}$ replaced with $\lim_{x \rightarrow a^+}$ or $\lim_{x \rightarrow a^-}$. Law 7 is modified as follows. Assume $n >0$ is an integer. \\
+    7. Root
+a. $\lim _{x \rightarrow a^{+}}(f(x))^{1 / n}=\left(\lim _{x \rightarrow a^{+}} f(x)\right)^{1 / n}$, provided $f(x) \geq 0$, for $x$ near a with $x>a$, if $n$ is even
+b. $\lim _{x \rightarrow a^{-}}(f(x))^{1 / n}=\left(\lim _{x \rightarrow a^{-}} f(x)\right)^{1 / n}$, provided $f(x) \geq 0$, for $x$ near a with $x<a$, if $n$ is even 
+    
+}
+
+\subsubsection{Other Techniques for Computing Limits}
+\begin{enumerate}
+    \item Factor and cancel
+    \item Use Conjugates
+\end{enumerate}
+
+\subsubsection{Squeeze Theorem}
+
+
+
+% Module 2 Derivatives 
+\newpage
+\chapter{Module 02: Derivatives}
+\section{Introducing the Derivative}
+The problem that was introduced in Chapter 2 about finding the slope of the tangent is important for several reasons.
+\begin{itemize}
+    \item We identify the slope of the tangent line with the \emph{instantaneous rate of change} of a function.
+    \item The slopes of the tangent line as they change along a curve are the values of a new function called the \emph{derivative}.
+    \item If a curve represents the trajectory of a moving object, the tangent line at a point on the curve indicates the direction of the motion at that point.
+\end{itemize}
+
+The instantaneous velocity at time $t=a$ is the limit of the average velocity as $t \rightarrow a$:
+\begin{equation*}
+    v_{inst}=\lim_{t \to a} \frac{s(t) -s(a)}{t-a}
+\end{equation*}
+
+We also learned that there are special geometric meanings to these quantities. The average velocity is the slope of the secant line and the instantaneous velocity is the slope of the tangent line.
+
+\subsubsection{Tangent lines and Rates of Change}
+Consider the curve $y=f(x)$ and a secant line intersecting the curve at points $P(a,f(a))$ and $Q(x,f(x))$. The difference $f(x_-f(a)$ is the change in the value of $f$ on the interval $[a,x]$, while $x-a$ is the change in $x$. As discussed before the slope of the secant line $\overleftrightarrow{PQ}$, is the $\lim_{x \to a }\frac{f(x)-f(a)}{x-a}$
+\begin{center}
+    \begin{tikzpicture}[scale=2.5,cap=round,mark pos/.style args={#1/#2}{%
+        postaction={decorate,decoration={markings,%
+        mark=at position #1 with {
+        \coordinate (#2);}}}}]
+        \tikzset{axes/.style={}}
+        %\draw[style=help lines,step=1cm, dotted] (-5.25,-5.25) grid (5.25,5.25);
+        % The graphic
+        \begin{scope}[style=axes]
+          %%%
+          \pgfmathsetmacro{\posP}{0.38}
+         \draw[red,{Latex[bend]}-{Latex[bend]},thick,mark
+         pos/.list={\posP-0.005/p-0,\posP/P,\posP+0.005/p-2,0.5/q-4,0.62/q-3,0.74/q-2,0.86/q-1}] plot[domain=.5:3.25,samples=101,variable=\x] ({\x},{.5*(\x-1.5)*(\x-1.5)+1});
+         \draw[red] let \p1=($(p-2)-(p-0)$),\n1={(\y1/\x1)*(1cm/1pt)}
+         in ($(P)-1*(1,\n1)$) -- ($(P)+2*(1,\n1)$) node[right,anchor=north
+         west,font=\scriptsize,text width=1cm]{slope $m$ $=$ instantaneous velocity};
+         \fill (P) circle (1pt) node[above,font=\scriptsize] {$P$};
+         \foreach \X in {1,...,4}
+         {\fill (q-\X) circle (1pt) node[below right,font=\scriptsize] {$Q_\X$};
+         \path (P) -- (q-\X) coordinate[pos=-0.5] (L-\X) coordinate[pos={1.2+\X*0.3}] (R-\X);
+         \draw[cyan,dashed] (L-\X) -- (R-\X) node[right,font=\scriptsize] (m\X) {slope $m_\X$}; }
+         \draw[line width=2mm,-{Latex[bend]},red!20] ($(m1)+(0.5,0.1)$)
+         to[out=-90,in=65] ++ (-0.2,-1.2);
+          %%%
+         %%%
+        \end{scope}
+        \end{tikzpicture}
+\end{center}
+
+\newpage
+
+\subsubsection{Definition Rate of Change and the Slope of the Tangent Line}
+
+The \textbf{average rate of change} in $f$ on the interval $[a,x]$ is the corresponding secant line:
+\begin{equation*}
+    m_{sec}=\frac{f(x)-f(a)}{x-a}
+\end{equation*}
+
+The \textbf{instantaneous rate of change } in $f$ at $a$ is 
+\begin{equation*}
+    m_{tan}=\lim_{x \to a } \frac{f(x)-f(a)}{x-a}
+\end{equation*}
+
+which is also the slope of the tangent line at $(a,f(a)$ provided that the limit exists. Tangent line through $(a,f(a))$ with slope $m_{tan}$. Its equation is
+
+\begin{equation*}
+    y-f(a)=m_{tan}(x-a)
+\end{equation*}
+
+\subsubsection{Alternative Definition Rate of Change and the Slope of the Tangent Line}
+The \textbf{average rate of change} in $f$ on the interval $[a, a +h]$ is the slope of the corresponding secant line:
+
+\begin{equation*}
+    m_{sec}=\frac{f(a+h)-f(a)}{h}
+\end{equation*}
+
+The \textbf{instantaneous rate of change} in $f$ at $a$ is 
+
+\begin{equation*}
+    m_{tan}=\lim_{h \to 0} \frac{f(a+h)-f(a)}{h}
+\end{equation*}
+
+\subsubsection{The Derivative}
+Computing the slope of the line tangent to the graph of a function $f$ at a point $a$ gives us the instantaneous  rate of change in $f$ at $a$. This is called the derivative.
+
+The \textbf{derivative of $f$ at $a$} written,
+
+\begin{equation*}
+    f`(a)=\lim_{h \to 0} \frac{f(a+h)-f(a)}{h}
+\end{equation*}
+
+\newpage
+\section{Derivative as a Function}
+In this section we now extend our undestandings of derivatives to all points in the domain $f$ to create new function called the derivative of $f$.
+
+
+\subsubsection{The Derivative Function}
+Due to the fact that the tangent of any given function moves, the slope of the tangent line will also change. For this reason, the slope on the tangent line for the function $f$ is itself a function, call the \emph{derivaive} of $f$.
+
+
+\begin{center}
+    \begin{tikzpicture}
+        % Axes
+        \draw [->, name path=x] (-1,0) -- (11,0) node [right] {$x$};
+        \draw [->] (0,-1) -- (0,6) node [above] {$y$};
+        % Origin
+        \node at (0,0) [below left] {$0$};
+        % Points
+        \coordinate (start) at (1,-0.8);
+        \coordinate (c1) at (3,3);
+        \coordinate (c2) at (5.5,1.5);
+        \coordinate (c3) at (8,4);
+        \coordinate (end) at (10.5,-0.8);
+        % show the points
+        \foreach \n in {start,c1,c2,c3,end} \fill [black] (\n)
+            circle (2pt) node [below] {};
+        % join the coordinates
+        \draw [thick,name path=curve] (start) to[out=70,in=180] (c1) to[out=0,in=180]
+            (c2) to[out=0,in=180] (c3) to[out=0,in=150] (end);
+        % add tangets and dashed lines
+        \foreach \c in {1,2,3} {
+            %\draw [dashed] let \p1=(c\c) in (c\c) -- (\x1,0) node [below] {$c_\c$};
+            \draw ($(c\c)-(0.75,0)$) -- ($(c\c)+(0.75,0)$) node [midway,above=4mm]{$$}; %{$f'(c_\c)=0$};
+        }
+        % add a and b
+        \path [name intersections={of={x and curve}, by={a,b}}] 
+            (a) node [below left] {$a$}
+            (b) node [above right] {$b$};
+            
+        \DrawTangent[red, thick]{curve}{-1}{4}{1.5}
+        \DrawTangent[orange, thick]{curve}{-1}{4}{3.5}
+        
+        \end{tikzpicture}
+\end{center}
+
+\subsubsection{Definition The Derivative Function}
+The \textbf{derivative} $f$ is the function
+
+\begin{equation*}
+    f'(x)=\lim_{h \to 0} \frac{f(x+h)-f(x)}{h}
+\end{equation*}
+
+provided the limit exists and $x$ is in the domain $f$.
+
+\ex{Find the derivative of $f(x)=-x^2+6x$}{
+    \begin{align*}
+        f'(x) & = \lim_{h \to 0} \frac{f(x+h)- f(x)}{h} \\
+        & = \lim_{h \to 0} \frac{-(x+h)^2 +6(x+h)-(-x^2+6x)}{h} \\
+        & = \lim_{h \to 0} \frac{-(x^2+2xh+h^2)+6x+6h+x^2-6x}{h} \\
+        & = \lim_{h \to 0} \frac{h(-2x-h+6)}{h} \\
+        & = \lim_{h \to 0} (-2x-h+6)\\
+        & = \boxed{-2x+6} 
+    \end{align*}
+}
+
+\newpage
+
+\subsubsection{Derivative Notation}
+Several notations for the derivatives are used. Recall the equation for the slope of the secant line,
+
+\begin{equation*}
+    m_{sec}=\frac{f(x + \Delta x)-f(x)}{\Delta x} = \frac{\Delta y}{\Delta x}
+\end{equation*}
+
+By letting $\Delta x \to 0$, the slope of the tangent line at $(x,f(x))$ is 
+
+\begin{equation*}
+    f'(x)=\lim_{\Delta x \to 0} \frac{(f(x+ \Delta x)- f(x))}{\Delta x}= \lim_{\Delta x \to 0} \frac{\Delta y}{\Delta x }= \frac{dy}{dx}
+\end{equation*}
+
+\subsubsection{Continuity}
+If a function is differentiable at a point, then it is also continuous at that point.
+
+\thm{Differentiable Implies Continuous}{If $f$ is differentiable at $a$, then $f$ is continuous $a$.}
+
+
+
+% \chapter{Module 03: More Derivatives}
+% \chapter{Module 04: Midterm Exam}
+% \chapter{Module 05: Applications of Derivatives}
+% \chapter{Module 06: L'Hopital's Rule and Integration}
+% \chapter{Module 07: Applications of Integration}
+% \chapter{Module 08: Final Exam}
+
+
+\end{document}

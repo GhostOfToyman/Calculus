@@ -1,0 +1,30 @@
+\contentsline {chapter}{\numberline {1}Module 01: Limits}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}The Idea of Limits}{2}{section.1.1}%
+\contentsline {subsubsection}{Average Velocity}{2}{section.1.1}%
+\contentsline {subsubsection}{Instantaneous Velocity}{2}{section.1.1}%
+\contentsline {subsubsection}{Slope of the Tangent Line}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Definitions of Limits}{4}{section.1.2}%
+\contentsline {subsubsection}{Defining the Limit of a Function (Prelimenary)}{4}{section.1.2}%
+\contentsline {subsubsection}{Finding Limits from a Graph}{4}{section.1.2}%
+\contentsline {subsubsection}{Finding Limits from a Table}{4}{section.1.2}%
+\contentsline {subsubsection}{One-Sided Limits}{4}{tcb@cnt@Example.1.2.1}%
+\contentsline {subsubsection}{Definition of One-Sided Limits}{4}{tcb@cnt@Example.1.2.1}%
+\contentsline {section}{\numberline {1.3}Techniques for Computing Limits}{5}{section.1.3}%
+\contentsline {subsubsection}{Limits of Linear Functions}{5}{section.1.3}%
+\contentsline {subsubsection}{Limit Laws}{5}{tcb@cnt@Theorem.1.3.1}%
+\contentsline {subsubsection}{Limits of Polynomial Functions and Rational Functions}{5}{Item.9}%
+\contentsline {subsubsection}{One Sided Limits}{6}{Item.11}%
+\contentsline {subsubsection}{Other Techniques for Computing Limits}{6}{tcb@cnt@Theorem.1.3.4}%
+\contentsline {subsubsection}{Squeeze Theorem}{6}{Item.13}%
+\contentsline {chapter}{\numberline {2}Module 02: Derivatives}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Introducing the Derivative}{7}{section.2.1}%
+\contentsline {subsubsection}{Tangent lines and Rates of Change}{7}{section.2.1}%
+\contentsline {subsubsection}{Definition Rate of Change and the Slope of the Tangent Line}{8}{section.2.1}%
+\contentsline {subsubsection}{Alternative Definition Rate of Change and the Slope of the Tangent Line}{8}{section.2.1}%
+\contentsline {subsubsection}{The Derivative}{8}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Derivative as a Function}{9}{section.2.2}%
+\contentsline {subsubsection}{The Derivative Function}{9}{section.2.2}%
+\contentsline {subsubsection}{Definition The Derivative Function}{9}{section.2.2}%
+\contentsline {subsubsection}{Derivative Notation}{10}{tcb@cnt@Example.2.2.1}%
+\contentsline {subsubsection}{Continuity}{10}{tcb@cnt@Example.2.2.1}%
+\contentsfinish 

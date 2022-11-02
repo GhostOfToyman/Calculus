@@ -33,7 +33,34 @@
 \usepackage{xifthen}
 \usepackage{pdfpages}
 \usepackage{transparent}
-\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{pgfplots}
+\usetikzlibrary{arrows,intersections}
+\usetikzlibrary{decorations.pathreplacing,decorations.markings,calc,arrows.meta,bending}
+
+\pgfplotsset{width=8cm, compat=newest}
+
+\newcommand*{\DeltaX}{0.01}
+\newcommand*{\DrawTangent}[5][]{%
+    % #1 = draw options
+    % #2 = name of curve
+    % #3 = ymin
+    % #4 = ymax
+    % #5 = x value at which tangent is to be drawn
+    
+    \path[name path=Vertical Line Left]  (#5-\DeltaX,#3) -- (#5-\DeltaX,#4);
+    \path[name path=Vertical Line Right] (#5+\DeltaX,#3) -- (#5+\DeltaX,#4);
+    
+    \path [name intersections={of=Vertical Line Left and #2}];
+    \coordinate (X0) at (intersection-1);
+    \path [name intersections={of=Vertical Line Right and #2}];
+    \coordinate (X1) at (intersection-1);
+    
+    \draw [shorten <= -1.00cm, shorten >= -1.00cm, #1] (X0) -- (X1);
+}%
+
 
 \newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{blue}{#1}}
 \SetCommentSty{mycommfont}
